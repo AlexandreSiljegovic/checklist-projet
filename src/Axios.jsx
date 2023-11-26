@@ -31,7 +31,7 @@ export const fetchDataFromApi = async () => {
   //   var data = '{\r\n    "title" : "La maman de Dopa",\r\n    "description" : "Cette liste me servira les étapes pour la séduitre",\r\n    "todo" : [{\r\n        "title" : "Payer le resto",\r\n        "description" : "Allez au Fouquet\'s avec maman"\r\n    }]\r\n}';
   //    try {
   //     // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
-  //     const responsePost = await axios.post(postUrl, data,{
+  //     const responsePost = await axios.post(postUrl, {
   //       headers: {
   //         'token': `b679e83afaf347c039f6439266e514d3cc8deb28`,
         
