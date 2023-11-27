@@ -4,18 +4,22 @@ div {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100vw;
+   
     flex-wrap: wrap;
+   
+
+    
 }
 
 form {
-    height: 100vh;
+    height: 70vh;
         
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 20vh;
+    
 }
 
 input {
@@ -23,7 +27,52 @@ input {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 300px;
+    width: 30vw;
 }
 
+.inputPrimary {
+    background-color: #fff;
+    color: #000;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.inputSecondary {
+    
+    width: 25vw;
+    height: 5vh;
+    border-radius: 5px;
+    
+    border: 1px solid ;
+  
+    margin-right: 5%;
+    border: 1px solid grey;
+    
+
+}
+
+
+button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 30vw;
+    background-color: #EF476F;
+    
+    cursor: pointer;
+    position: relative;
+}
+
+
+button:hover {
+    background-color:#EF476F;
+    ;
+    border-color: #26547C;
+    color: #FFD166;
+    
+}
+
+.inputs-container {
+    overflow-x: scroll;
+    max-height: 60vh;
+}
 

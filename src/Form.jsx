@@ -1,81 +1,4 @@
 
-// import { postDataToApi } from './Axios.jsx';
-// import { useState } from 'react';
-
-// const Form = () => {
-//     const [titleTask, setTitleTask] = useState('');
-//     const [descriptionTask, setDescriptionTask] = useState('');
-//     const [title, setTitle] = useState('');
-//     const [description, setDescription] = useState('');
-//     const [todo, setTodos] = useState([]);
-
-//     const handleChange = (setter) => (e) => {
-//         setter(e.target.value);
-//     };
-
-//     const newTodo = () => ({
-//     title: titleTask,
-//     description: descriptionTask,
-//     todo: [
-//         {
-//             title,
-//             description,
-//         },
-//     ],
-// });
-
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         setTodos([...todo, newTodo()]);
-
-//         console.log('Data to be sent:', newTodo());
-
-//         // Appelez la fonction postDataToApi avec les données
-//         await postDataToApi(newTodo());
-
-//         // Réinitialisez les états des champs
-        
-//         setTitleTask('');
-//         setDescriptionTask('');
-//         setTitle('');
-//         setDescription('');
-//     };
-
-//     return (
-//         <div className="flex-col">
-//         <form onSubmit={handleSubmit}>
-//             <input
-//                 type="text"
-//                 value={titleTask}
-//                 onChange={handleChange(setTitleTask)}
-//                 placeholder="Ajouter un titre à la liste"
-//             />
-//             <input
-//                 type="text"
-//                 value={descriptionTask}
-//                 onChange={handleChange(setDescriptionTask)}
-//                 placeholder="Ajouter une description à la liste"
-//             />
-//             <input
-//                 type="text"
-//                 value={title}
-//                 onChange={handleChange(setTitle)}
-//                 placeholder="Ajouter un titre à la tâche"
-//             />
-//             <input
-//                 type="text"
-//                 value={description}
-//                 onChange={handleChange(setDescription)}
-//                 placeholder="Ajouter une description à la tâche"
-//             />
-//             <button type="submit">Ajouter</button>
-//         </form>
-//         </div>
-//     );
-// };
-
-// export default Form;
 
 
 
@@ -133,54 +56,68 @@ const Form = () => {
         setAdditionalInputs([]);
     };
 
+    // if (window.location.pathname === '/form') {
+    //     let form = document.querySelector('.form-container');
+    //     form.classList.add('form-container--hidden');
+    // }
+
     return (
-        <div className="flex-col">
+        <div className="form-container">
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={titleTask}
-                    onChange={handleChange(setTitleTask)}
-                    placeholder="Ajouter un titre à la liste"
-                />
-                <input
-                    type="text"
-                    value={descriptionTask}
-                    onChange={handleChange(setDescriptionTask)}
-                    placeholder="Ajouter une description à la liste"
-                />
-                <input
-                    type="text"
-                    value={title}
-                    onChange={handleChange(setTitle)}
-                    placeholder="Ajouter un titre à la tâche"
-                />
-                <input
-                    type="text"
-                    value={description}
-                    onChange={handleChange(setDescription)}
-                    placeholder="Ajouter une description à la tâche"
-                />
-                {additionalInputs.map((input, index) => (
-                    <div className='inputAdd' key={index}>
-                        <input
+                <div className="inputs-container">
+                    <div className="input-row">
+                        <input className='inputPrimary'
                             type="text"
-                            value={input.title}
-                            onChange={(e) => handleAdditionalInputChange(index, 'title', e.target.value)}
-                            placeholder="Titre de la tâche"
+                            value={titleTask}
+                            onChange={handleChange(setTitleTask)}
+                            placeholder="Ajouter un titre à la liste"
                         />
-                        <input
+                        <input className='inputSecondary'
                             type="text"
-                            value={input.description}
-                            onChange={(e) => handleAdditionalInputChange(index, 'description', e.target.value)}
-                            placeholder="Description description de la tâche"
+                            value={descriptionTask}
+                            onChange={handleChange(setDescriptionTask)}
+                            placeholder="Ajouter une description à la liste"
                         />
                     </div>
-                ))}
-                <button type="button" onClick={handleAddInput}>Ajouter une tâche</button>
-                <button type="submit">Confirmer la liste</button>
+                    <div className="input-row">
+                        <input className='inputPrimary'
+                            type="text"
+                            value={title}
+                            onChange={handleChange(setTitle)}
+                            placeholder="Ajouter un titre à la tâche"
+                        />
+                        <input className='inputSecondary'
+                            type="text"
+                            value={description}
+                            onChange={handleChange(setDescription)}
+                            placeholder="Ajouter une description à la tâche"
+                        />
+                    </div>
+    
+                    {additionalInputs.map((input, index) => (
+                        <div className="input-row" key={index}>
+                            <input className='inputPrimary'
+                                type="text"
+                                value={input.title}
+                                onChange={(e) => handleAdditionalInputChange(index, 'title', e.target.value)}
+                                placeholder="Titre de la tâche"
+                            />
+                            <input className='inputSecondary'
+                                type="text"
+                                value={input.description}
+                                onChange={(e) => handleAdditionalInputChange(index, 'description', e.target.value)}
+                                placeholder="Description de la tâche"
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div className="button-row">
+                    <button type="button" onClick={handleAddInput}>Ajouter une tâche</button>
+                    <button type="submit">Confirmer la liste</button>
+                </div>
             </form>
         </div>
     );
-};
+                    };    
 
 export default Form;

@@ -2,5 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 @import 'form.scss';
+@import 'app.scss';
 
-@import "_app.scss"
+@import "_app.scss";
+
+
+#root {
+    height: 100vh;
+}
