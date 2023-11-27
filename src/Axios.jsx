@@ -27,23 +27,28 @@ export const fetchDataFromApi = async () => {
     }
   };
   
-  // export const postDataToApi = async () => {
-  //   var data = '{\r\n    "title" : "La maman de Dopa",\r\n    "description" : "Cette liste me servira les étapes pour la séduitre",\r\n    "todo" : [{\r\n        "title" : "Payer le resto",\r\n        "description" : "Allez au Fouquet\'s avec maman"\r\n    }]\r\n}';
-  //    try {
-  //     // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
-  //     const responsePost = await axios.post(postUrl, {
-  //       headers: {
-  //         'token': `b679e83afaf347c039f6439266e514d3cc8deb28`,
+  export const postDataToApi = async (data) => {
+    
+     try {
+      // const postData = {
+      //   title: data.title,
+      //   description: data.description,
+      // };
+      // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
+      const responsePost = await axios.post(postUrl,data , {
+        headers: {
+          'Content-Type': 'application/json',
+          'token': `b679e83afaf347c039f6439266e514d3cc8deb28`,
         
-  //       },
+        },
        
        
-  //     });
-  //     console.log(responsePost.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+      });
+      console.log(responsePost.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
      export const test = async () => {

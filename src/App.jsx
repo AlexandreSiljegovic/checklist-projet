@@ -1,7 +1,8 @@
-import axios from './Axios.jsx'
-import { fetchDataFromApi } from './Axios.jsx'
-import { postDataToApi } from './Axios.jsx'
-import { test } from './Axios.jsx'
+// import axios from './Axios.jsx';
+// import { fetchDataFromApi } from './Axios.jsx'
+// import { postDataToApi } from './Axios.jsx'
+// import { test } from './Axios.jsx'
+import Form from './Form.jsx'
 
 function App() {
     // postDataToApi()
@@ -9,9 +10,10 @@ function App() {
     // fetchDataFromApi()
     // console.log(fetchDataFromApi())
     return (
-        <h1 className="text-3xl font-bold underline">
-            Hello world!
-        </h1>
+        <>
+      
+        <Form className = "flex flex-col ..." />
+        </>
         
     )
 
