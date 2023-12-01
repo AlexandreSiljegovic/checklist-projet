@@ -12,6 +12,7 @@ const Form = () => {
     const [description, setDescription] = useState('');
     const [todos, setTodos] = useState([]);
     const [additionalInputs, setAdditionalInputs] = useState([]);
+    const [statut, setStatut] = useState([]);
 
     const handleChange = (setter) => (e) => {
         setter(e.target.value);
@@ -34,6 +35,7 @@ const Form = () => {
             {
                 title,
                 description,
+                statut
             },
             ...additionalInputs,
         ],
@@ -43,7 +45,7 @@ const Form = () => {
         e.preventDefault();
     
         // Validate if at least one todo is present
-        if (titleTask || descriptionTask ||additionalInputs.length < 0) {
+        if (titleTask || descriptionTask || statut  ||additionalInputs.length < 0) {
           setTodos([...todos, newTodo()]);
           
           console.log('Data to be sent:', newTodo());
@@ -57,6 +59,7 @@ const Form = () => {
           setTitle('');
           setDescription('');
           setAdditionalInputs([]);
+          setStatut('');
         } else {
           
           alert('Please add at least one todo and its description before confirming the list.');
@@ -100,6 +103,12 @@ const Form = () => {
                             onChange={handleChange(setDescriptionTask)}
                             placeholder="Description à la tâche"
                         />
+                        <input className='inputSecondary'
+                            type="text"
+                            value={statut}
+                            onChange={handleChange(setStatut)}
+                            placeholder="statut de la tâche"
+                        />
                     </div>
     
                     {additionalInputs.map((input, index) => (
@@ -115,6 +124,12 @@ const Form = () => {
                                 value={input.description}
                                 onChange={(e) => handleAdditionalInputChange(index, 'description', e.target.value)}
                                 placeholder="Description de la tâche"
+                            />
+                            <input className='inputSecondary'
+                                type="text"
+                                value={input.statut}
+                                onChange={(e) => handleAdditionalInputChange(index, 'statut', e.target.value)}
+                                placeholder="statut de la tâche"
                             />
                         </div>
                     ))}

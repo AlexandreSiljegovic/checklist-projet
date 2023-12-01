@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchDataFromApi, deleteDataFromApi, updateDataFromApi } from "./Axios";
+import { fetchDataFromApi, deleteDataFromApi, updateDataFromApi, statutDataFromApi } from "./Axios";
 
 import ModifyListForm from "./ModifyListForm";
 
@@ -22,6 +22,7 @@ const ViewList = () => {
         try {
           // Call the updateDataToApi function to persist the modifications
           await updateDataFromApi(selectedList.id, modifiedData);
+          await statutDataFromApi(selectedList.id, selectedList.statut);
   
           // Update the parent component state with the modified list
           setLists(updatedLists);
@@ -34,7 +35,7 @@ const ViewList = () => {
   
         } catch (error) {
           console.error("Error updating data:", error);
-          // Handle error, show user feedback, etc.
+         
         }
       }
     }
@@ -42,6 +43,7 @@ const ViewList = () => {
 
   const handleModifyClick = (list) => {
     setSelectedList(list);
+
     // Open the modal
     
   };
@@ -76,11 +78,14 @@ const ViewList = () => {
     return <p>No lists available.</p>;
   }
 
+ 
+
   return (
+    
     <div className="viewLists-container">
-      <h2>Lists</h2>
+      
       {lists.map((response, index) => (
-        <div key={index}>
+        <div  className={'viewLists-form statut-${task.statut}'} key={index} >
           <h1>ID {response.id} </h1>
           <h3>List {index + 1}</h3>
           <p>List title: {response.title}</p>
@@ -88,15 +93,26 @@ const ViewList = () => {
           <h4>Tasks:</h4>
           {Array.isArray(response.todo) ? (
             response.todo.length > 0 ? (
-              <ul>
+              <ul className="ul-viewLists">
                 {response.todo.map((task, taskIndex) => (
                   <li key={taskIndex}>
                     <p>Title: {task.title}</p>
                     <p>Description: {task.description}</p>
-                    <p>Statut: {task.statut}</p>
+                    <p>statut: {task.statut}</p>
                   </li>
                 ))}
-                <button
+                
+            
+              </ul>
+            ) 
+            
+            : (
+              <p>No tasks available for this list. (Empty todo array)</p>
+            )
+          ) : (
+            <p>No tasks available for this list. (todo is not an array)</p>
+          )}
+          <button className="delete-button"
                   onClick={() => {
                     deleteDataFromApi(response.id);
                     setLists((prevLists) =>
@@ -107,18 +123,11 @@ const ViewList = () => {
 
                   Delete
                 </button>
-                <button onClick={() => handleModifyClick(response)}>
+                <button  className ="modify-button"
+                onClick={() => handleModifyClick(response)}>
                   Modify
                 </button>
                
-            
-              </ul>
-            ) : (
-              <p>No tasks available for this list. (Empty todo array)</p>
-            )
-          ) : (
-            <p>No tasks available for this list. (todo is not an array)</p>
-          )}
            {selectedList && selectedList.id === response.id && (
             <div>
               <ModifyListForm list={selectedList} onModify={handleModifyList}
@@ -126,9 +135,10 @@ const ViewList = () => {
             </div>
           )}
         </div>
+        
       ))}
 
-      
+
       
     </div>
   );

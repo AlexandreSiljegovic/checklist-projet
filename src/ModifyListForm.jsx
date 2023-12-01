@@ -97,10 +97,17 @@ const ModifyListForm = ({ list, onModify }) => {
                   value={task.description}
                   onChange={(e) => handleInputChange(e, index, "description")}
                 />
+                <input 
+                  type="text"
+                  name={`statut_${index}`}
+                  value={task.statut}
+                  onChange={(e) => handleInputChange(e, index, "statut")}
+                />
               </>
+
             ) : (
               <span>
-                {task.title} - {task.description}
+              <br></br> Titre : {task.title} <br></br> Description : {task.description}
               </span>
             )}
           </div>

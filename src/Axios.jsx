@@ -7,7 +7,7 @@ const apiUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklists';
 const token = 'b679e83afaf347c039f6439266e514d3cc8deb28'
 const updateUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/update'
 const deleteUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/delete'
-const statutUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/status'
+const statutUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/statut'
 
 export const fetchDataFromApi = async () => {
   
@@ -86,7 +86,7 @@ export const fetchDataFromApi = async () => {
         console.log(`Delete request for ID ${id} successful. Response:`, responseDelete.data);
       }
       catch (error) {
-        console.error(`Error deleting ID ${id}. Status: ${error.response?.status}. Message: ${error.response?.data?.message}`, error);
+        console.error(`Error deleting ID ${id}. statut: ${error.response?.statut}. Message: ${error.response?.data?.message}`, error);
       }
     }
 
@@ -109,9 +109,9 @@ export const fetchDataFromApi = async () => {
     export const statutDataFromApi = async (id) => {
       try {
         // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
-        const responseStatut = await axios.put(`${statutUrl}${id}`, {
+        const responseStatut = await axios.get(`${statutUrl}?id=${id}`, {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'token' : `${token}`,
           
           },
           
@@ -124,6 +124,8 @@ export const fetchDataFromApi = async () => {
       }
     }
 
+
+   
   //  const deleteAllLists = async () => {
   //   try {
   //     // Fetch all lists
