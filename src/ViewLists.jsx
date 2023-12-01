@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchDataFromApi, deleteDataFromApi } from "./Axios";
-import Modal from "./Modal";
+import { fetchDataFromApi, deleteDataFromApi, updateDataFromApi } from "./Axios";
+
 import ModifyListForm from "./ModifyListForm";
 
 
@@ -9,30 +9,41 @@ const ViewList = () => {
   const [lists, setLists] = useState([]);
 
   const [selectedList, setSelectedList] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+ 
 
-  const handleModifyList = (modifiedData) => {
+  const handleModifyList = async (modifiedData) => {
     // Update the selected list with the modified data
     if (selectedList) {
       const updatedLists = lists.map((list) =>
         list.id === selectedList.id ? { ...list, ...modifiedData } : list
       );
-
-      // Update the parent component state with the modified list
-      setLists(updatedLists);
-
-      // Clear the selectedList state
-      setSelectedList(null);
-
-      // Close the modal
-      setIsModalOpen(false);
+  
+      if ('id' in modifiedData && 'todo' in modifiedData) {
+        try {
+          // Call the updateDataToApi function to persist the modifications
+          await updateDataFromApi(selectedList.id, modifiedData);
+  
+          // Update the parent component state with the modified list
+          setLists(updatedLists);
+  
+          // Clear the selectedList state
+          setSelectedList((prevSelectedList) => ({
+            ...prevSelectedList,
+            ...modifiedData,
+          }));
+  
+        } catch (error) {
+          console.error("Error updating data:", error);
+          // Handle error, show user feedback, etc.
+        }
+      }
     }
   };
 
   const handleModifyClick = (list) => {
     setSelectedList(list);
     // Open the modal
-    setIsModalOpen(true);
+    
   };
 
 
@@ -99,18 +110,20 @@ const ViewList = () => {
                 <button onClick={() => handleModifyClick(response)}>
                   Modify
                 </button>
-                {selectedList && (
-        <Modal openModal={isModalOpen} setOpenModal={setIsModalOpen}>
-          <ModifyListForm list={selectedList} onModify={handleModifyList} />
-        </Modal>
-        )}
                
+            
               </ul>
             ) : (
               <p>No tasks available for this list. (Empty todo array)</p>
             )
           ) : (
             <p>No tasks available for this list. (todo is not an array)</p>
+          )}
+           {selectedList && selectedList.id === response.id && (
+            <div>
+              <ModifyListForm list={selectedList} onModify={handleModifyList}
+               />
+            </div>
           )}
         </div>
       ))}

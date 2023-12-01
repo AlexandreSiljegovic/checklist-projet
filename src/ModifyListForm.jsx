@@ -1,47 +1,118 @@
-import { useState } from 'react';
-import { updateDataFromApi } from './Axios';
+// ModifyListForm.js
+import React, { useState, useEffect } from "react";
+import { updateDataFromApi } from "./Axios";
 
-const ModifyListForm = ({list, onModify}) => {
-  const [formData, setFormData] = useState({
-    title: list.title,
-    description: list.description,
-    // Add other fields as needed
+const ModifyListForm = ({ list, onModify }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [modifiedData, setModifiedData] = useState({
+    id: null,
+    title: "",
+    description: "",
+    todo: [],
   });
+  
+  useEffect(() => {
+    // Update modifiedData whenever the list prop changes
+    if (list) {
+      setModifiedData({
+        id: list.id,
+        title: list.title,
+        description: list.description,
+        todo: list.todo.map((task) => ({ ...task })),
+      });
+    }
+  }, [list]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
+  const handleToggleEdit = () => {
+    setIsEditing((prev) => !prev);
+  };
+
+  const handleModifyClick = () => {
+    // Pass the modified data to the parent component
+    onModify(modifiedData);
+    // Toggle back to read-only mode after modification
+    setIsEditing(false);
+  };
+
+  const handleInputChange = (e, taskIndex, fieldName) => {
+    const { value } = e.target;
+
+    setModifiedData((prevData) => ({
       ...prevData,
-      [name]: value,
+      todo: prevData.todo.map((task, index) =>
+        index === taskIndex
+          ? { ...task, [fieldName]: value }
+          : task
+      ),
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Assuming updateDataToApi takes the list id and formData
-      await updateDataFromApi(list.id, formData);
-      // Trigger the onModify callback to update the local state
-      onModify(list.id, formData);
-    } catch (error) {
-      console.error('Error updating list:', error);
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input type="text" name="title" value={formData.title} onChange={handleInputChange} />
-      </label>
-      <label>
-        Description:
-        <input type="text" name="description" value={formData.description} onChange={handleInputChange} />
-      </label>
-      {/* Add other form fields as needed */}
-      <button type="submit">Save Changes</button>
-    </form>
+    <div>
+      <div>
+        <strong>Title:</strong>{" "}
+        {isEditing ? (
+          <input
+            type="text"
+            name="title"
+            value={modifiedData.title}
+            onChange={(e) => handleInputChange(e, -1, "title")}
+          />
+        ) : (
+          <span>{modifiedData.title}</span>
+        )}
+      </div>
+
+      <div>
+        <strong>Description:</strong>{" "}
+        {isEditing ? (
+          <input
+            type="text"
+            name="description"
+            value={modifiedData.description}
+            onChange={(e) => handleInputChange(e, -1, "description")}
+          />
+        ) : (
+          <span>{modifiedData.description}</span>
+        )}
+      </div>
+
+      <div>
+        <strong>Tasks:</strong>
+        {modifiedData.todo.map((task, index) => (
+          <div key={index}>
+            <strong>Task {index + 1}:</strong>{" "}
+            {isEditing ? (
+              <>
+                <input
+                  type="text"
+                  name={`title_${index}`}
+                  value={task.title}
+                  onChange={(e) => handleInputChange(e, index, "title")}
+                />
+                <input
+                  type="text"
+                  name={`description_${index}`}
+                  value={task.description}
+                  onChange={(e) => handleInputChange(e, index, "description")}
+                />
+              </>
+            ) : (
+              <span>
+                {task.title} - {task.description}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {isEditing ? (
+        <button onClick={handleModifyClick}>Save</button>
+      ) : (
+        <button onClick={handleToggleEdit}>Edit</button>
+      )}
+    </div>
   );
 };
 

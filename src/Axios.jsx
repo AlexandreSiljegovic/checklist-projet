@@ -35,10 +35,7 @@ export const fetchDataFromApi = async () => {
   export const postDataToApi = async (data) => {
     
      try {
-      // const postData = {
-      //   title: data.title,
-      //   description: data.description,
-      // };
+     
       // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
       const responsePost = await axios.post(postUrl,data , {
         headers: {
@@ -93,23 +90,21 @@ export const fetchDataFromApi = async () => {
       }
     }
 
- export const updateDataFromApi = async (id) => {
+    export const updateDataFromApi = async (id, modifiedData) => {
       try {
-        // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
-        const responseUpdate = await axios.post(`${updateUrl}?id=${id}`, {
+        const responseUpdate = await axios.post(`${updateUrl}?id=${id}`, modifiedData, {
           headers: {
-            'Authorization' :  'Bearer b679e83afaf347c039f6439266e514d3cc8deb28',
-          
+            'token': 'b679e83afaf347c039f6439266e514d3cc8deb28',
           },
-          
-          
         });
-        console.log(responseUpdate.data);
+    
+        console.log("Update API Response:", responseUpdate.data);
+        return responseUpdate.data;
+      } catch (error) {
+        console.error("Error updating data:", error);
+        throw error;
       }
-      catch (error) {
-        console.error(error);
-      }
-    }
+    };
 
     export const statutDataFromApi = async (id) => {
       try {
