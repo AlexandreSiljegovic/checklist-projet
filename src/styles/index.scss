@@ -3,10 +3,18 @@
 @tailwind utilities;
 @import 'form.scss';
 @import 'app.scss';
+@import 'nav.scss';
+@import 'variables.scss';
+@import 'dashboard.scss';
 
 @import "_app.scss";
 
 
 #root {
     height: 100vh;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+
 }

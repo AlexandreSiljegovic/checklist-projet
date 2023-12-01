@@ -1,0 +1,35 @@
+@import 'variables.scss';
+
+
+
+nav {
+    width: 100%;
+    height: 5em;
+    background-color: $blue;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+   
+    .access {
+        margin-right: 5em;
+        a {
+            margin: 0 0.5em;
+            line-height: 5em;
+            height: 5em;
+            padding: 0.5em 0.5em;
+            box-shadow: inset 0 0 0 0 $deepBlue;
+            transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            &:hover {
+                transition: all 0.5s ease-in-out;
+                box-shadow: inset 200px 0 0 0 $deepBlue;
+                color: $yellow;
+            }
+        }
+    }
+}
+
+h1 {
+    margin-left: 1em;
+}

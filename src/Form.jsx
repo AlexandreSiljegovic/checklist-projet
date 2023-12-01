@@ -41,20 +41,27 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setTodos([...todos, newTodo()]);
-
-        console.log('Data to be sent:', newTodo());
-
-        // Appelez la fonction postDataToApi avec les données
-        await postDataToApi(newTodo());
-
-        // Réinitialisez les états des champs
-        setTitleTask('');
-        setDescriptionTask('');
-        setTitle('');
-        setDescription('');
-        setAdditionalInputs([]);
-    };
+    
+        // Validate if at least one todo is present
+        if (titleTask || descriptionTask ||additionalInputs.length < 0) {
+          setTodos([...todos, newTodo()]);
+          
+          console.log('Data to be sent:', newTodo());
+    
+          // Appelez la fonction postDataToApi avec les données
+          await postDataToApi(newTodo());
+    
+          // Réinitialisez les états des champs
+          setTitleTask('');
+          setDescriptionTask('');
+          setTitle('');
+          setDescription('');
+          setAdditionalInputs([]);
+        } else {
+          
+          alert('Please add at least one todo and its description before confirming the list.');
+        }
+      };
 
     // if (window.location.pathname === '/form') {
     //     let form = document.querySelector('.form-container');
@@ -62,35 +69,36 @@ const Form = () => {
     // }
 
     return (
+        <div id="form">
         <div className="form-container">
             <form onSubmit={handleSubmit}>
                 <div className="inputs-container">
                     <div className="input-row">
                         <input className='inputPrimary'
                             type="text"
-                            value={titleTask}
-                            onChange={handleChange(setTitleTask)}
+                            value={title}
+                            onChange={handleChange(setTitle)}
                             placeholder="Ajouter un titre à la liste"
                         />
                         <input className='inputSecondary'
                             type="text"
-                            value={descriptionTask}
-                            onChange={handleChange(setDescriptionTask)}
+                            value={description}
+                            onChange={handleChange(setDescription)}
                             placeholder="Ajouter une description à la liste"
                         />
                     </div>
                     <div className="input-row">
                         <input className='inputPrimary'
                             type="text"
-                            value={title}
-                            onChange={handleChange(setTitle)}
-                            placeholder="Ajouter un titre à la tâche"
+                            value={titleTask}
+                            onChange={handleChange(setTitleTask)}
+                            placeholder="Titre à la tâche"
                         />
                         <input className='inputSecondary'
                             type="text"
-                            value={description}
-                            onChange={handleChange(setDescription)}
-                            placeholder="Ajouter une description à la tâche"
+                            value={descriptionTask}
+                            onChange={handleChange(setDescriptionTask)}
+                            placeholder="Description à la tâche"
                         />
                     </div>
     
@@ -116,6 +124,7 @@ const Form = () => {
                     <button type="submit">Confirmer la liste</button>
                 </div>
             </form>
+        </div>
         </div>
     );
                     };    
