@@ -12,7 +12,7 @@ const Form = () => {
     const [description, setDescription] = useState('');
     const [todos, setTodos] = useState([]);
     const [additionalInputs, setAdditionalInputs] = useState([]);
-    const [statut, setStatut] = useState([]);
+    const [statut, setStatut] = useState();
 
     const handleChange = (setter) => (e) => {
         setter(e.target.value);
