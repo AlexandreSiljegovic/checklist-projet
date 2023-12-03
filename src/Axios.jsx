@@ -123,32 +123,6 @@ export const statutDataFromApi = async (id, statut) => {
 };
 
 
-
-   
-  //  const deleteAllLists = async () => {
-  //   try {
-  //     // Fetch all lists
-  //     const response = await fetchDataFromApi();
-  
-  //     // Assuming your API response has an array property named 'response'
-  //     const allLists = response.response;
-  
-  //     // Check if allLists is an array and not empty
-  //     if (Array.isArray(allLists) && allLists.length > 0) {
-  //       // Iterate over each list and delete it
-  //       for (const list of allLists) {
-  //         await deleteDataFromApi(list.id);
-  //       }
-  
-  //       console.log('All lists deleted successfully.');
-  //     } else {
-  //       console.log('No lists to delete.');
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
    
   
    
