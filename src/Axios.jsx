@@ -106,23 +106,23 @@ export const fetchDataFromApi = async () => {
       }
     };
 
-    export const statutDataFromApi = async (id) => {
-      try {
-        // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
-        const responseStatut = await axios.get(`${statutUrl}?id=${id}`, {
-          headers: {
-            'token' : `${token}`,
-          
-          },
-          
-          
-        });
-        console.log(responseStatut.data);
-      }
-      catch (error) {
-        console.error(error);
-      }
-    }
+
+export const statutDataFromApi = async (id, statut) => {
+  try {
+    // Utilize Axios to perform the GET request with the authentication token
+    const responseStatut = await axios.get(`${statutUrl}?id=${id}&statut=${statut}`, {
+      headers: {
+        'token': `${token}`,
+      },
+    });
+    console.log(responseStatut.data);
+    
+    
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
 
    
