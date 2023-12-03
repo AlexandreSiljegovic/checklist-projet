@@ -82,14 +82,16 @@ const ViewList = () => {
           <p>List title: {response.title}</p>
           <p>List description: {response.description}</p>
           <p>statut: {response.statut}</p>
-          <h4>Tasks:</h4>
+          <h3>Tasks</h3>
           {Array.isArray(response.todo) && response.todo.length > 0 ? (
             <ul className="ul-viewLists">
               {response.todo.map((task, taskIndex) => (
                 <li key={taskIndex}>
+                  <hr></hr>
                   <p>Title: {task.title}</p>
                   <p>Description: {task.description}</p>
                   <p>statut: {task.statut}</p>
+                  <hr></hr>
                 </li>
               ))}
             </ul>
