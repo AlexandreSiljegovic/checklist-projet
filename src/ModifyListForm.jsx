@@ -105,7 +105,7 @@ const ModifyListForm = ({ list, onModify }) => {
       </div>
       {isEditing ? (
         <div className="modify-input-primary">
-          <strong>statut:</strong>{" "}
+          <strong>statut:</strong><br></br>{" "}
           <input
             type="number"
             name="statut"
@@ -135,21 +135,24 @@ const ModifyListForm = ({ list, onModify }) => {
         <strong>Tasks:</strong>
         {modifiedData.todo.map((task, index) => (
           <div className='modify-input-secondary' key={index}>
-            <strong>Task {index + 1}:</strong>{" "}
+            <strong>{index + 1}</strong>{" "}<br></br>
             {isEditing ? (
               <>
+                <strong>Title:</strong>{" "}<br></br>
                 <input
                   type="text"
                   name={`title_${index}`}
                   value={task.title}
                   onChange={(e) => handleInputChange(e, index, "title")}
                 />
+                <strong>Description:</strong>{" "}
                 <input
                   type="text"
                   name={`description_${index}`}
                   value={task.description}
                   onChange={(e) => handleInputChange(e, index, "description")}
-                />
+                /><br></br>
+                <strong>statut:</strong>{" "}<br></br>
                 <input 
                   type="number"
                   name={`statut_${index}`}

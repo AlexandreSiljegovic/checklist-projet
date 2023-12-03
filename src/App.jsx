@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import Dashboard from "./Dashboard";
 import ViewLists from './ViewLists.jsx';
 import ModifyListForm from "./ModifyListForm.jsx";
+import Fonctionnement from './Fonctionnement.jsx';
 
 function App() {
   const [currentPath, setCurrentPath] = useState("/");
@@ -44,6 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Nav />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/fonctionnement" element={<Fonctionnement />} />
         
      
           <Route path="/form" element={<Form />} />

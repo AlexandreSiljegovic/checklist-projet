@@ -5,17 +5,21 @@ import { fetchDataFromApi, deleteDataFromApi, updateDataFromApi, statutDataFromA
 import ModifyListForm from "./ModifyListForm";
 import { format } from 'date-fns';
 import ViewList from './ViewLists';
-
+import Fonctionnement from './Fonctionnement';
 const Dashboard = () => {
 return (
  
         <div className='dashboard-container'>
-           <ViewList /> 
-        <button>
+           <button>
             <Link className='dashboard-link' to='/form'> Se créer une liste </Link>
         </button>
-        </div>
-        
+        <button>
+         <Link className='dashboard-link' to='/fonctionnement'> Fonctionnement </Link>
+         </button>
+       
+           <ViewList /> 
+      
+   </div>
             
      );
 }
