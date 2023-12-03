@@ -6,6 +6,11 @@ import { format } from 'date-fns';
 const ViewList = () => {
   const [lists, setLists] = useState([]);
   const [selectedList, setSelectedList] = useState(null);
+  const [isModifying, setIsModifying] = useState(false);
+
+
+
+
 
   const handleModifyList = async (modifiedData) => {
     if (selectedList) {
@@ -39,8 +44,8 @@ const ViewList = () => {
   };
 
   const handleModifyClick = (list) => {
-    // Toggle the selectedList state to show/hide the modification form
     setSelectedList((prevSelectedList) => (prevSelectedList ? null : list));
+    setIsModifying(true);
   };
 
   useEffect(() => {
@@ -68,7 +73,7 @@ const ViewList = () => {
   }
 
   return (
-    <div className="viewLists-container">
+    <div className={`viewLists-container ${isModifying ? 'modifying' : ''}`}>
       {lists.map((response, index) => (
         <div className={'viewLists-form'} key={index}>
           <h6>{format(new Date(response.created_at), "MM/dd/yyyy")}</h6>
@@ -89,8 +94,11 @@ const ViewList = () => {
               ))}
             </ul>
           ) : (
-            <p>No tasks available for this list. (Empty todo array)</p>
+            <p>No tasks available.</p>
           )}
+
+           
+          
           <button
             className="delete-button"
             onClick={() => {

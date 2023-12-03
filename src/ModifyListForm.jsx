@@ -41,13 +41,15 @@ const ModifyListForm = ({ list, onModify }) => {
     const { value } = e.target;
 
     setModifiedData((prevData) => {
-      if (fieldName === "statut") {
+      if (fieldName === "title" || fieldName === "description" || fieldName === "statut") {
+        // Handle changes for title, description, and statut in the main form
         return {
           ...prevData,
-          statut: parseInt(value, 10),
+          [fieldName]: fieldName === "statut" ? parseInt(value, 10) : value,
         };
       }
 
+      // Handle changes for tasks
       const updatedTodo = prevData.todo.map((task, index) =>
         index === taskIndex ? { ...task, [fieldName]: value } : task
       );
@@ -88,8 +90,8 @@ const ModifyListForm = ({ list, onModify }) => {
 
   return (
     <div>
-      <div>
-        <strong>Title:</strong>{" "}
+      <div className="modify-input-primary">
+        <strong>Title:</strong><br></br>{" "}
         {isEditing ? (
           <input
             type="text"
@@ -102,7 +104,7 @@ const ModifyListForm = ({ list, onModify }) => {
         )}
       </div>
       {isEditing ? (
-        <div>
+        <div className="modify-input-primary">
           <strong>statut:</strong>{" "}
           <input
             type="number"
@@ -115,7 +117,7 @@ const ModifyListForm = ({ list, onModify }) => {
         </div>
       ) : null}
 
-      <div>
+      <div className="modify-input-primary">
         <strong>Description:</strong>{" "}
         {isEditing ? (
           <input
@@ -132,7 +134,7 @@ const ModifyListForm = ({ list, onModify }) => {
       <div>
         <strong>Tasks:</strong>
         {modifiedData.todo.map((task, index) => (
-          <div className='modify-input' key={index}>
+          <div className='modify-input-secondary' key={index}>
             <strong>Task {index + 1}:</strong>{" "}
             {isEditing ? (
               <>
