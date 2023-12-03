@@ -14,7 +14,7 @@ const ModifyListForm = ({ list, onModify }) => {
   });
   
   useEffect(() => {
-    // Update modifiedData whenever the list prop changes
+    // Update modifiedData 
     if (list) {
       setModifiedData({
         id: list.id,
@@ -33,7 +33,7 @@ const ModifyListForm = ({ list, onModify }) => {
   const handleModifyClick = () => {
     // Pass the modified data to the parent component
     onModify(modifiedData);
-    // Toggle back to read-only mode after modification
+    //  read-only 
     setIsEditing(false);
   };
 

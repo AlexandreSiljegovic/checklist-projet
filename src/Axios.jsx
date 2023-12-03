@@ -13,7 +13,7 @@ export const fetchDataFromApi = async () => {
   
   
     try {
-      // Utiliser Axios pour effectuer la requête GET avec le token d'authentification
+     
       const responseGet = await axios.get(apiUrl, {
         headers: {
           
@@ -36,7 +36,7 @@ export const fetchDataFromApi = async () => {
     
      try {
      
-      // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
+     
       const responsePost = await axios.post(postUrl,data , {
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +55,6 @@ export const fetchDataFromApi = async () => {
 
      export const test = async () => {
       try {
-        // Utiliser Axios pour effectuer la requête POST avec le token d'authentification
         const responsePostTest = await axios.get(testUrl, {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -109,7 +108,7 @@ export const fetchDataFromApi = async () => {
 
 export const statutDataFromApi = async (id, statut) => {
   try {
-    // Utilize Axios to perform the GET request with the authentication token
+    
     const responseStatut = await axios.get(`${statutUrl}?id=${id}&statut=${statut}`, {
       headers: {
         'token': `${token}`,

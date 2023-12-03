@@ -36,7 +36,7 @@ const ViewList = () => {
         );
 
         setLists(updatedLists);
-        setSelectedList(null); // Reset selectedList after successful modification
+        setSelectedList(null); // Reset 
       } catch (error) {
         console.error("Error updating data:", error);
       }

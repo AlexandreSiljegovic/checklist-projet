@@ -68,10 +68,6 @@ const Form = () => {
         }
       };
 
-    // if (window.location.pathname === '/form') {
-    //     let form = document.querySelector('.form-container');
-    //     form.classList.add('form-container--hidden');
-    // }
 
     return (
         <div id="form">
