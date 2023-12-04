@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import ViewLists from './ViewLists.jsx';
 import ModifyListForm from "./ModifyListForm.jsx";
 import Fonctionnement from './Fonctionnement.jsx';
+import ViewModify from './ViewModifyListForm.jsx';
 
 function App() {
   const [currentPath, setCurrentPath] = useState("/");
@@ -50,6 +51,7 @@ function App() {
      
           <Route path="/form" element={<Form />} />
           <Route path='/viewlists' element ={ <ViewLists />} />
+          <Route path='/viewmodify' element ={ <ViewModify />} />
           {/* <Route path='/modifylist' element ={ selectedList && <ModifyListForm lists={lists} onSelectList={handleSelectList} />} /> */}
         </Route>
       </Routes>

@@ -1,52 +1,53 @@
 import { useState, useEffect } from "react";
-import { fetchDataFromApi, deleteDataFromApi, updateDataFromApi, statutDataFromApi } from "./Axios";
-import ModifyListForm from "./ModifyListForm";
+import { fetchDataFromApi, deleteDataFromApi, } from "./Axios";
+// import ModifyListForm from "./ModifyListForm";
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 const ViewList = () => {
   const [lists, setLists] = useState([]);
-  const [selectedList, setSelectedList] = useState(null);
-  const [isModifying, setIsModifying] = useState(false);
+  // const [selectedList, setSelectedList] = useState(null);
+  // const [isModifying, setIsModifying] = useState(false);
 
 
 
 
 
-  const handleModifyList = async (modifiedData) => {
-    if (selectedList) {
-      try {
-        const modifiedDataWithStatut = {
-          ...modifiedData,
-          statut: modifiedData.statut,
-          todo: modifiedData.todo.map((task) => ({
-            ...task,
-            statut: task.statut || selectedList.statut,
-          })),
-        };
+  // const handleModifyList = async (modifiedData) => {
+  //   if (selectedList) {
+  //     try {
+  //       const modifiedDataWithStatut = {
+  //         ...modifiedData,
+  //         statut: modifiedData.statut,
+  //         todo: modifiedData.todo.map((task) => ({
+  //           ...task,
+  //           statut: task.statut || selectedList.statut,
+  //         })),
+  //       };
 
-        console.log("Update Payload:", modifiedDataWithStatut);
+  //       console.log("Update Payload:", modifiedDataWithStatut);
 
-        const updateResponse = await updateDataFromApi(selectedList.id, modifiedDataWithStatut);
-        console.log("Update Response:", updateResponse);
+  //       const updateResponse = await updateDataFromApi(selectedList.id, modifiedDataWithStatut);
+  //       console.log("Update Response:", updateResponse);
 
-        await statutDataFromApi(selectedList.id, modifiedDataWithStatut.statut);
+  //       await statutDataFromApi(selectedList.id, modifiedDataWithStatut.statut);
 
-        const updatedLists = lists.map((list) =>
-          list.id === selectedList.id ? { ...list, ...modifiedData } : list
-        );
+  //       const updatedLists = lists.map((list) =>
+  //         list.id === selectedList.id ? { ...list, ...modifiedData } : list
+  //       );
 
-        setLists(updatedLists);
-        setSelectedList(null); // Reset 
-      } catch (error) {
-        console.error("Error updating data:", error);
-      }
-    }
-  };
+  //       setLists(updatedLists);
+  //       setSelectedList(null); // Reset 
+  //     } catch (error) {
+  //       console.error("Error updating data:", error);
+  //     }
+  //   }
+  // };
 
-  const handleModifyClick = (list) => {
-    setSelectedList((prevSelectedList) => (prevSelectedList ? null : list));
-    setIsModifying(true);
-  };
+  // const handleModifyClick = (list) => {
+  //   setSelectedList((prevSelectedList) => (prevSelectedList ? null : list));
+  //   setIsModifying(true);
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,7 +74,7 @@ const ViewList = () => {
   }
 
   return (
-    <div className={`viewLists-container ${isModifying ? 'modifying' : ''}`}>
+    <div className='viewLists-container'>
       {lists.map((response, index) => (
         <div className={'viewLists-form'} key={index}>
           <h6>{format(new Date(response.created_at), "MM/dd/yyyy")}</h6>
@@ -110,17 +111,11 @@ const ViewList = () => {
           >
             Delete
           </button>
-          <button className="modify-button" onClick={() => handleModifyClick(response)}>
-            Modify
-          </button>
-          {selectedList && selectedList.id === response.id && (
-            <div>
-              <ModifyListForm list={selectedList} onModify={handleModifyList} />
-            </div>
-          )}
+        
+          
         </div>
       ))}
-      
+    
     </div>
   );
 };

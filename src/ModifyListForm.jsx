@@ -1,6 +1,6 @@
 // ModifyListForm.js
 import React, { useState, useEffect } from "react";
-import { updateDataFromApi } from "./Axios";
+
 
 const ModifyListForm = ({ list, onModify }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -75,6 +75,7 @@ const ModifyListForm = ({ list, onModify }) => {
       const updatedTodo = prevData.todo.map((task, index) =>
         index === taskIndex ? { ...task, statut: parseInt(value, 10) } : task
       );
+      
 
       return {
         ...prevData,
@@ -82,6 +83,37 @@ const ModifyListForm = ({ list, onModify }) => {
       };
     });
   };
+
+  
+const handleTaskTitleChange = (e, taskIndex) => {
+  const { value } = e.target;
+  setModifiedData((prevData) => {
+    const updatedTodo = prevData.todo.map((task, index) =>
+      index === taskIndex ? { ...task, title: value } : task
+    );
+    
+
+    return {
+      ...prevData,
+    todo: updatedTodo,
+    };
+  });
+};
+
+const handleTaskDescriptionChange = (e, taskIndex) => {
+  const { value } = e.target;
+  setModifiedData((prevData) => {
+    const updatedTodo = prevData.todo.map((task, index) =>
+      index === taskIndex ? { ...task, description: value } : task
+    );
+    
+
+    return {
+      ...prevData,
+      todo: updatedTodo,
+    };
+  });
+};
 
 
 
@@ -143,14 +175,14 @@ const ModifyListForm = ({ list, onModify }) => {
                   type="text"
                   name={`title_${index}`}
                   value={task.title}
-                  onChange={(e) => handleInputChange(e, index, "title")}
+                  onChange={(e) => handleTaskTitleChange(e, index, "title")}
                 />
                 <strong>Description:</strong>{" "}
                 <input
                   type="text"
                   name={`description_${index}`}
                   value={task.description}
-                  onChange={(e) => handleInputChange(e, index, "description")}
+                  onChange={(e) => handleTaskDescriptionChange(e, index, "description")}
                 /><br></br>
                 <strong>statut:</strong>{" "}<br></br>
                 <input 
