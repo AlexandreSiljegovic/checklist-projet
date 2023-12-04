@@ -1,22 +1,24 @@
 const Fonctionnement = () => {
     return (
         <div className="fonctionnement">
-        <p>Fonctionnement</p>
+      <p>How it works</p>
         <p>
-        Appuyez sur le bouton "Se créer une liste" ou sur "créer une liste" dans la navigation pour créer une liste.
+        Press the "Create a list" in the top left or in the navigation to create a list.
         </p>
         <p>
-        Vous pouvez modifier le titre et la description de la liste en cliquant sur le bouton "Modify" puis "Edit".
+        You can modify the list title and description by clicking on the "Modify" button and then "Edit".
         </p>
         <p>
-        Vous pouvez modifier le titre et la description de la tâche en cliquant sur le bouton "Modify" puis "Edit".
+        You can modify the task title and description by clicking on the "Modify" button then "Edit".
         </p>
         <p>
-        Vous pouvez modifier le statut de la liste et de la tâche en cliquant sur le bouton "Modify" puis "Edit". 0 = en cours, 1 = terminé, 2 = annulé.
+        You can change the status of the list and task by clicking on the "Modify" button then "Edit". 0 = in progress, 1 = completed, 2 = cancelled.
         </p>    
         <p>
-        Vous pouvez supprimer la liste en cliquant sur le bouton "Delete".
+        You can delete the list by clicking on the "Delete" button.
         </p>
+
+Translated with DeepL.com (free version)
         
         </div>
     );

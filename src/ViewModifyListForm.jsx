@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchDataFromApi, deleteDataFromApi, updateDataFromApi, statutDataFromApi } from "./Axios";
+import { fetchDataFromApi,  updateDataFromApi, statutDataFromApi } from "./Axios";
 import ModifyListForm from "./ModifyListForm";
 import { format } from 'date-fns';
 

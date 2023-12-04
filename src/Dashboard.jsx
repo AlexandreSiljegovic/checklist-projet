@@ -8,13 +8,13 @@ return (
  
         <div className='dashboard-container'>
            <button>
-            <Link className='dashboard-link' to='/form'> Se créer une liste </Link>
+            <Link className='dashboard-link' to='/form'> Create a list </Link>
         </button>
         <button>
         <Link to = '/viewmodify'> Modify a list</Link>
         </button>
         <button>
-         <Link className='dashboard-link' to='/fonctionnement'> Fonctionnement </Link>
+         <Link className='dashboard-link' to='/fonctionnement'> Functioning </Link>
          </button>
        
            <ViewList /> 
