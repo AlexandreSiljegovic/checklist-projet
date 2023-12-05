@@ -135,19 +135,7 @@ const handleTaskDescriptionChange = (e, taskIndex) => {
           <span>{modifiedData.title}</span>
         )}
       </div>
-      {isEditing ? (
-        <div className="modify-input-primary">
-          <strong>statut:</strong><br></br>{" "}
-          <input
-            type="number"
-            name="statut"
-            value={modifiedData.statut}
-            min={0}
-            max={2}
-            onChange={(e) => handleListStatutChange(e, -1, "statut")}
-          />
-        </div>
-      ) : null}
+      
 
       <div className="modify-input-primary">
         <strong>Description:</strong>{" "}
@@ -184,15 +172,7 @@ const handleTaskDescriptionChange = (e, taskIndex) => {
                   value={task.description}
                   onChange={(e) => handleTaskDescriptionChange(e, index, "description")}
                 /><br></br>
-                <strong>statut:</strong>{" "}<br></br>
-                <input 
-                  type="number"
-                  name={`statut_${index}`}
-                  value={task.statut}
-                  min={0}
-                  max={2}
-                  onChange={(e) => handleTaskStatutChange(e, index, "statut")}
-                />
+             
               
               </>
 
