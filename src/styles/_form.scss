@@ -1,87 +1,153 @@
-.form-container {
+// .form-container {
     
    
-height: 70vh;
-width: 70vw;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-top: 1em;
+// height: 70vh;
+// width: 70vw;
+// display: flex;
+// flex-direction: column;
+// justify-content: center;
+// align-items: center;
+// margin-top: 1em;
 
 
 
-}
+// }
+
+// #form {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+    
+// }
+// // form {
+// //     height: 70vh;
+        
+// //     display: flex;
+// //     flex-direction: column;
+// //     align-items: center;
+// //     justify-content: center;
+// //     margin-top: 20vh;
+    
+// // }
+
+// input {
+//     margin: 10px;
+//     padding: 10px;
+//     border-radius: 5px;
+//     border: 1px solid #ccc;
+//     width: 30vw;
+// }
+
+// .inputPrimary {
+//     background-color: #fff;
+//     color: #000;
+//     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+// }
+// .inputSecondary {
+    
+//     width: 25vw;
+//     height: 5vh;
+//     border-radius: 5px;
+    
+//     border: 1px solid ;
+  
+//     margin-right: 5%;
+//     border: 1px solid grey;
+    
+
+// }
+
+
+// button {
+//     margin: 10px;
+//     padding: 10px;
+//     border-radius: 5px;
+//     border: 1px solid #ccc;
+   
+//     background-color: #EF476F;
+    
+//     cursor: pointer;
+//     position: relative;
+// }
+
+
+// button:hover {
+//     background-color:#EF476F;
+//     ;
+//     border-color: #26547C;
+//     color: #FFD166;
+    
+// }
+
+// .inputs-container {
+//     overflow-y: scroll;
+//     max-height: 60vh;
+// }
+
+@import "variables";
 
 #form {
     display: flex;
     justify-content: center;
     align-items: center;
+   margin-top: 5rem;
+}
+
+.form-container {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    overflow-y: auto;
+    /* Ajoute un défilement vertical si nécessaire */
+    max-height: 80vh;
+    /* Limite la hauteur du formulaire */
+}
+
+form {
+    display: flex;
     flex-direction: column;
-    
-}
-// form {
-//     height: 70vh;
-        
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     margin-top: 20vh;
-    
-// }
-
-input {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 30vw;
-}
-
-.inputPrimary {
-    background-color: #fff;
-    color: #000;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-.inputSecondary {
-    
-    width: 25vw;
-    height: 5vh;
-    border-radius: 5px;
-    
-    border: 1px solid ;
-  
-    margin-right: 5%;
-    border: 1px solid grey;
-    
-
-}
-
-
-button {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-   
-    background-color: #EF476F;
-    
-    cursor: pointer;
-    position: relative;
-}
-
-
-button:hover {
-    background-color:#EF476F;
-    ;
-    border-color: #26547C;
-    color: #FFD166;
-    
 }
 
 .inputs-container {
-    overflow-y: scroll;
-    max-height: 60vh;
+    margin-bottom: 20px;
 }
 
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.inputPrimary,
+.inputSecondary {
+    width: 48%;
+    /* Ajustez la largeur des champs d'entrée selon vos besoins */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: $deepBlue;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: black;
+}
+
+button:hover {
+    background-color: $lightRed;
+    color: $yellow;
+}
