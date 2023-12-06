@@ -46,13 +46,13 @@ const Form = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        // Validate if at least one todo is present
+        // se valide si au moins une todo est présente et si les champs sont remplis
         if (titleTask || descriptionTask  ||additionalInputs.length < 0) {
           setTodos([...todos, newTodo()]);
           
           console.log('Data to be sent:', newTodo());
     
-          // Appelez la fonction postDataToApi avec les données
+          // Appeler la fonction postDataToApi avec les données
           await postDataToApi(newTodo());
     
           // Réinitialisez les états des champs

@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 @import 'form.scss';
 @import 'app.scss';
 @import 'nav.scss';
@@ -18,7 +16,7 @@
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', cursive;
    
 
 }

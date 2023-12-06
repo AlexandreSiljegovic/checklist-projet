@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <div>
         <nav>
-            <h1>Pre-flight Checklist</h1>
+            <h1 className="pre-flight">Pre-flight Checklist</h1>
             <div className='access'>
                 <Link to='/'>Home</Link>
                 <Link to='/form'>Create a list</Link>

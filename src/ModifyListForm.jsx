@@ -31,7 +31,7 @@ const ModifyListForm = ({ list, onModify }) => {
   };
 
   const handleModifyClick = () => {
-    // Pass the modified data to the parent component
+    // envoie les data au parent
     onModify(modifiedData);
     //  read-only 
     setIsEditing(false);
@@ -42,14 +42,14 @@ const ModifyListForm = ({ list, onModify }) => {
 
     setModifiedData((prevData) => {
       if (fieldName === "title" || fieldName === "description" || fieldName === "statut") {
-        // Handle changes for title, description, and statut in the main form
+        // Handle les changements pour les taches descriptions et statut
         return {
           ...prevData,
           [fieldName]: fieldName === "statut" ? parseInt(value, 10) : value,
         };
       }
 
-      // Handle changes for tasks
+      // handle pour les taches (les changements)
       const updatedTodo = prevData.todo.map((task, index) =>
         index === taskIndex ? { ...task, [fieldName]: value } : task
       );
