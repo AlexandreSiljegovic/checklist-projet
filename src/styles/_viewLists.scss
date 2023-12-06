@@ -1,65 +1,109 @@
-.viewLists-container {
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+// .viewLists-container {
+//     height: 100vh;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
     
-    justify-content: space-evenly;
+//     justify-content: space-evenly;
    
        
-};
+// };
 
-h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem
-};
+// h1 {
+//     font-size: 2rem;
+//     margin-bottom: 1rem
+// };
 
+
+// .viewLists-form {
+//    height: 50vh;
+//     overflow-y: scroll;
+//     width: 30vw;
+    
+//     box-shadow: 0 0 10px rgba(0,0,0,0.3);
+//     margin-top: 1rem;
+//     justify-content: center;
+//     align-items: center;
+   
+// };
+
+// form {
+//     border-color: $blue solid 2px
+// }
+
+// h3 {
+//     font-size: 1.5rem;
+//     margin-bottom: 1rem;
+//     margin-left: 1rem;
+// };
+
+// .modify-button {
+//     position : sticky
+// }
+
+// .delete-button {
+//     position : sticky
+// }
+
+
+
+
+// .viewLists-container button {
+//     width: 6vw;
+   
+// }
+
+// p {
+//     font-size: 1.2rem;
+//     margin-bottom: 1rem;
+//     margin-left: 1rem;
+// };
+
+
+// .modifying {
+//    height : 80vh;
+// }
+
+@import "variables";
+
+/* Style de base */
+/* Style de base */
+.viewLists-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 
 .viewLists-form {
-   height: 50vh;
-    overflow-y: scroll;
-    width: 30vw;
-    
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    margin-top: 1rem;
-    justify-content: center;
-    align-items: center;
-   
-};
-
-form {
-    border-color: $blue solid 2px
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    margin-left: 1rem;
-};
-
-.modify-button {
-    position : sticky
+/* Style pour les petits écrans */
+@media only screen and (max-width: 600px) {
+    .viewLists-form {
+        max-width: 100%;
+    }
 }
 
+/* Style pour les boutons */
 .delete-button {
-    position : sticky
+    background-color: $lightRed;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    /* Ajustez la taille du bouton ici */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    width: 3vw;
 }
 
-
-
-
-.viewLists-container button {
-    width: 6vw;
-   
-}
-
-p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    margin-left: 1rem;
-};
-
-
-.modifying {
-   height : 80vh;
+.delete-button:hover {
+    background-color: #ff3333;
 }
