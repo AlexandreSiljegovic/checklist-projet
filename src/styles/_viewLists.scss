@@ -21,6 +21,12 @@
     .viewLists-form {
         max-width: 100%;
     }
+    button {
+        width: 100%;
+    }
+    .delete-button {
+        width: 100%;
+    }
 }
 
 
@@ -33,7 +39,7 @@
     cursor: pointer;
     margin-top: 10px;
     transition: background-color 0.3s;
-    width: 10vw;
+   
 }
 
 
