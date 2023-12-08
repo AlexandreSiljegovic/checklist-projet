@@ -4,10 +4,10 @@ import axios from 'axios';
 const testUrl = 'https://greenvelvet.alwaysdata.net/pfc/ping'
 const postUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/add'
 const apiUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklists';
-const token = 'b679e83afaf347c039f6439266e514d3cc8deb28'
 const updateUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/update'
 const deleteUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/delete'
 const statutUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/statut'
+const token = 'b679e83afaf347c039f6439266e514d3cc8deb28'
 
 export const fetchDataFromApi = async () => {
   

@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import { fetchDataFromApi,  updateDataFromApi, statutDataFromApi } from "./Axios";
+import {
+  fetchDataFromApi,
+  updateDataFromApi,
+  statutDataFromApi,
+} from "./Axios";
 import ModifyListForm from "./ModifyListForm";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 const ViewList = () => {
   const [lists, setLists] = useState([]);
   const [selectedList, setSelectedList] = useState(null);
   const [isModifying, setIsModifying] = useState(false);
-
-
-
-
 
   const handleModifyList = async (modifiedData) => {
     if (selectedList) {
@@ -23,13 +23,15 @@ const ViewList = () => {
             statut: task.statut || selectedList.statut,
             description: task.description || selectedList.description,
             title: task.title || selectedList.title,
-
           })),
         };
 
         console.log("Update Payload:", modifiedDataWithStatut);
 
-        const updateResponse = await updateDataFromApi(selectedList.id, modifiedDataWithStatut);
+        const updateResponse = await updateDataFromApi(
+          selectedList.id,
+          modifiedDataWithStatut
+        );
         console.log("Update Response:", updateResponse);
 
         await statutDataFromApi(selectedList.id, modifiedDataWithStatut.statut);
@@ -39,7 +41,7 @@ const ViewList = () => {
         );
 
         setLists(updatedLists);
-        setSelectedList(null); // Reset 
+        setSelectedList(null); // Reset
       } catch (error) {
         console.error("Error updating data:", error);
       }
@@ -76,9 +78,9 @@ const ViewList = () => {
   }
 
   return (
-    <div className={`viewLists-container ${isModifying ? 'modifying' : ''}`}>
+    <div className={`viewLists-container ${isModifying ? "modifying" : ""}`}>
       {lists.map((response, index) => (
-        <div className={'viewLists-form'} key={index}>
+        <div className={"viewLists-form"} key={index}>
           <h6>{format(new Date(response.created_at), "MM/dd/yyyy")}</h6>
           <h1>ID {response.id}</h1>
           <h3>List {index + 1}</h3>
@@ -102,10 +104,10 @@ const ViewList = () => {
             <p>No tasks available.</p>
           )}
 
-           
-          
-        
-          <button className="modify-button" onClick={() => handleModifyClick(response)}>
+          <button
+            className="modify-button"
+            onClick={() => handleModifyClick(response)}
+          >
             Modify
           </button>
           {selectedList && selectedList.id === response.id && (
@@ -115,7 +117,6 @@ const ViewList = () => {
           )}
         </div>
       ))}
-      
     </div>
   );
 };

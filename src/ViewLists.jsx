@@ -6,48 +6,6 @@ import { format } from 'date-fns';
 
 const ViewList = () => {
   const [lists, setLists] = useState([]);
-  // const [selectedList, setSelectedList] = useState(null);
-  // const [isModifying, setIsModifying] = useState(false);
-
-
-
-
-
-  // const handleModifyList = async (modifiedData) => {
-  //   if (selectedList) {
-  //     try {
-  //       const modifiedDataWithStatut = {
-  //         ...modifiedData,
-  //         statut: modifiedData.statut,
-  //         todo: modifiedData.todo.map((task) => ({
-  //           ...task,
-  //           statut: task.statut || selectedList.statut,
-  //         })),
-  //       };
-
-  //       console.log("Update Payload:", modifiedDataWithStatut);
-
-  //       const updateResponse = await updateDataFromApi(selectedList.id, modifiedDataWithStatut);
-  //       console.log("Update Response:", updateResponse);
-
-  //       await statutDataFromApi(selectedList.id, modifiedDataWithStatut.statut);
-
-  //       const updatedLists = lists.map((list) =>
-  //         list.id === selectedList.id ? { ...list, ...modifiedData } : list
-  //       );
-
-  //       setLists(updatedLists);
-  //       setSelectedList(null); // Reset 
-  //     } catch (error) {
-  //       console.error("Error updating data:", error);
-  //     }
-  //   }
-  // };
-
-  // const handleModifyClick = (list) => {
-  //   setSelectedList((prevSelectedList) => (prevSelectedList ? null : list));
-  //   setIsModifying(true);
-  // };
 
   useEffect(() => {
     const fetchData = async () => {
