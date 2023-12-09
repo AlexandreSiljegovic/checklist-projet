@@ -14,7 +14,7 @@ const StatutEditing = ({ list, onModify }) => {
     });
 
     useEffect(() => {
-        // Update modifiedData 
+        // Update modifiedData
         if (list) {
             setModifiedData({
                 id: list.id,
@@ -31,9 +31,9 @@ const StatutEditing = ({ list, onModify }) => {
     };
 
     const handleModifyClick = () => {
-        // Pass the modified data to the parent component
+       
         onModify(modifiedData);
-        //  read-only 
+         
         setIsEditing(false);
     };
 
@@ -42,7 +42,7 @@ const StatutEditing = ({ list, onModify }) => {
 
         setModifiedData((prevData) => {
             if (fieldName === "title" || fieldName === "description" || fieldName === "statut") {
-                // Handle changes for title, description, and statut in the main form
+             
                 return {
                     ...prevData,
                     [fieldName]: fieldName === "statut" ? parseInt(value, 10) : value,
