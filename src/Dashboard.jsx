@@ -9,7 +9,7 @@ return (
         <div className='dashboard-container'>
         
         <button id='nouveau'>
-         <Link className='dashboard-link' to='/form'> NOUVEAU</Link>
+         <Link className='dashboard-link' to='/form'> CREATE A NEW LIST </Link>
          </button>
        
            <ViewList /> 
