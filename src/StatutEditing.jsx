@@ -90,8 +90,8 @@ const StatutEditing = ({ list, onModify }) => {
                 ))}
             </div>
 
-            {isEditing && <button onClick={handleModifyClick}>Save</button>}
-            <button onClick={handleToggleEdit}>
+            {isEditing && <button className="modify-button" onClick={handleModifyClick}>Save</button>}
+            <button className="modify-button" onClick={handleToggleEdit}>
                 {isEditing ? "Cancel" : "Edit"}
             </button>
         </div>
