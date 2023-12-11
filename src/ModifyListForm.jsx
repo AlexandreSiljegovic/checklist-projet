@@ -89,7 +89,7 @@ const handleTaskTitleChange = (e, taskIndex) => {
   const { value } = e.target;
   setModifiedData((prevData) => {
     const updatedTodo = prevData.todo.map((task, index) =>
-      index === taskIndex ? { ...task, title: value } : task
+      index === taskIndex ? { ...task, titleTask: value } : task
     );
     
 
@@ -104,7 +104,7 @@ const handleTaskDescriptionChange = (e, taskIndex) => {
   const { value } = e.target;
   setModifiedData((prevData) => {
     const updatedTodo = prevData.todo.map((task, index) =>
-      index === taskIndex ? { ...task, description: value } : task
+      index === taskIndex ? { ...task, descriptionTask: value } : task
     );
     
 
@@ -162,14 +162,14 @@ const handleTaskDescriptionChange = (e, taskIndex) => {
                 <input
                   type="text"
                   name={`title_${index}`}
-                  value={task.title}
+                  value={task.titleTask}
                   onChange={(e) => handleTaskTitleChange(e, index, "title")}
                 /><br></br>
                 <strong>Description:</strong> <br></br>{" "}
                 <input
                   type="text"
                   name={`description_${index}`}
-                  value={task.description}
+                  value={task.descriptionTask}
                   onChange={(e) => handleTaskDescriptionChange(e, index, "description")}
                 /><br></br>
              

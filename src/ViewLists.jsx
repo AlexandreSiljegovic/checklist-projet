@@ -129,8 +129,8 @@ const ViewList = () => {
               {response.todo.map((task, taskIndex) => (
                 <li key={taskIndex}>
                   <hr></hr>
-                  <p><span className="underline">Title</span> : {task.title}</p>
-                  <p><span className="underline">Description</span> :  {task.description}</p>
+                  <p><span className="underline">Title</span> : {task.titleTask}</p>
+                  <p><span className="underline">Description</span> :  {task.descriptionTask}</p>
                   <p><span className="underline">Statut</span> : {statutLabel(task.statut)} </p>
                   <hr></hr>
                 </li>

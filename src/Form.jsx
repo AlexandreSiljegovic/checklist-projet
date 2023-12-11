@@ -25,13 +25,13 @@ const Form = () => {
   };
 
   const newTodo = () => ({
-    title: titleTask,
-    description: descriptionTask,
+    title: title,
+    description: description,
 
     todo: [
       {
-        title,
-        description,
+        titleTask,
+        descriptionTask,
       },
       ...additionalInputs,
     ],
