@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Form from "./Form";
+import Nav from "./Nav";
+import Dashboard from "./Dashboard";
+import ViewLists from './ViewLists.jsx';
+import Fonctionnement from './Fonctionnement.jsx';
+
+import Statut from './Statut.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPath, setCurrentPath] = useState("/");
+ 
+  
+
+  useEffect(() => {
+   
+    const storedPath = localStorage.getItem(currentPath);
+    if (storedPath) {
+      setCurrentPath(storedPath);
+    }
+
+  
+    
+    const updatePath = () => {
+      const newPath = window.location.pathname;
+      setCurrentPath(newPath);
+      
+      localStorage.setItem("currentPath", newPath);
+    };
+
+    window.addEventListener("popstate", updatePath);
+
+    
+    return () => {
+      window.removeEventListener("popstate", updatePath);
+    };
+  }, []); 
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path="/" element={<Nav />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/form" element={<Form />} />
+        
+     
+          <Route path="/form" element={<Form />} />
+          <Route path='/viewlists' element ={ <ViewLists />} />
+          <Route path='/statut' element ={ <Statut />} />
+         
+        </Route>
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

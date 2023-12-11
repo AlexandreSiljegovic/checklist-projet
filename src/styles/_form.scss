@@ -1,0 +1,68 @@
+
+
+@import "variables";
+
+#form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   margin-top: 5rem;
+}
+
+.form-container {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    overflow-y: auto;
+    
+    max-height: 80vh;
+   
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs-container {
+    margin-bottom: 20px;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.inputPrimary,
+.inputSecondary {
+    width: 48%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: $lightRed;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: black;
+    
+}
+
+button:hover {
+    background-color: $lightRed;
+    color: $yellow;
+}

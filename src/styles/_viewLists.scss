@@ -1,0 +1,102 @@
+@import "variables";
+
+
+.viewLists-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.viewLists-form {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: max-width 0.3s, transform 0.3s;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .viewLists-form {
+        max-width: 100%;
+    }
+    button {
+        width: 100%;
+    }
+    .delete-button {
+        width: 100%;
+    }
+}
+
+
+.delete-button {
+    background-color: $lightRed;
+    
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+   
+}
+
+
+
+
+.viewLists-form p {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.viewLists-form p:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+    color : $lightRed;
+    
+}
+
+
+
+
+.viewLists-form p {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.underline {
+    text-decoration: underline;
+    color: $blue;
+}
+
+.viewLists-form .underline:hover {
+    color: $lightRed;
+}
+#button {
+ 
+    width: auto;
+    margin-top: 5%;
+  
+    justify-content: space-evenly;
+    max-width: 20vh;
+    
+}
+
+.statut-vierge {
+    color: $lightRed;
+}
+
+.statut-encours {
+    color: $yellow;
+}
+
+.statut-termine {
+    color: $blue;
+}

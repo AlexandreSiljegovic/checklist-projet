@@ -1,0 +1,46 @@
+@import 'variables';
+
+
+.fonctionnement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    
+}
+
+.fonctionnement {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+.fonctionnement P:hover {
+    
+    color: $yellow;
+    font-weight: bold;
+    
+    transition: all 0.3s;
+}
+
+.action-modify {
+    color: $deepBlue;
+}
+
+.action-delete  {
+    color: $lightRed;
+}
