@@ -10,7 +10,7 @@ const Nav = () => {
                 <Link to='/'>Home</Link>
                 <Link to='/form'>Create a list</Link>
                 <Link to ='statut'>Statut</Link>
-                  <Link to='/viewmodify'> Modify a list</Link>
+                 
             </div>
         </nav>
         <Outlet />

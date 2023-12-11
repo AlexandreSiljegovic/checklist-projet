@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import Dashboard from "./Dashboard";
 import ViewLists from './ViewLists.jsx';
 import Fonctionnement from './Fonctionnement.jsx';
-import ViewModify from './ViewModifyListForm.jsx';
+
 import Statut from './Statut.jsx';
 
 function App() {
@@ -42,12 +42,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Nav />}>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/fonctionnement" element={<Fonctionnement />} />
+          <Route path="/form" element={<Form />} />
         
      
           <Route path="/form" element={<Form />} />
           <Route path='/viewlists' element ={ <ViewLists />} />
-          <Route path='/viewmodify' element ={ <ViewModify />} />
           <Route path='/statut' element ={ <Statut />} />
          
         </Route>

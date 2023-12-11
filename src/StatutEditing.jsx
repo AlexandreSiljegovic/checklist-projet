@@ -1,6 +1,4 @@
-// ModifyListForm.js
 import React, { useState, useEffect } from "react";
-
 
 const StatutEditing = ({ list, onModify }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -14,7 +12,6 @@ const StatutEditing = ({ list, onModify }) => {
     });
 
     useEffect(() => {
-        // Update modifiedData
         if (list) {
             setModifiedData({
                 id: list.id,
@@ -31,151 +28,86 @@ const StatutEditing = ({ list, onModify }) => {
     };
 
     const handleModifyClick = () => {
-       
         onModify(modifiedData);
-         
         setIsEditing(false);
     };
 
-    const handleInputChange = (e, taskIndex, fieldName) => {
-        const { value } = e.target;
+    const handleStatutClick = () => {
+        if (isEditing) {
+            const newStatut = (modifiedData.statut + 1) % 3;
+            setModifiedData((prevData) => ({
+                ...prevData,
+                statut: newStatut,
+            }));
+        }
+    };
 
-        setModifiedData((prevData) => {
-            if (fieldName === "title" || fieldName === "description" || fieldName === "statut") {
-             
+    const handleTaskStatutChange = (taskIndex) => {
+        if (isEditing) {
+            const newStatut = (modifiedData.todo[taskIndex].statut + 1) % 3;
+            setModifiedData((prevData) => {
+                const updatedTodo = prevData.todo.map((task, index) =>
+                    index === taskIndex ? { ...task, statut: newStatut } : task
+                );
                 return {
                     ...prevData,
-                    [fieldName]: fieldName === "statut" ? parseInt(value, 10) : value,
+                    todo: updatedTodo,
                 };
-            }
-
-            // Handle changes for tasks
-            const updatedTodo = prevData.todo.map((task, index) =>
-                index === taskIndex ? { ...task, [fieldName]: value } : task
-            );
-
-            return {
-                ...prevData,
-                todo: updatedTodo,
-            };
-        });
+            });
+        }
     };
-
-
-    const handleListStatutChange = (e) => {
-        const { value } = e.target;
-        setModifiedData((prevData) => ({
-            ...prevData,
-            statut: parseInt(value, 10),
-        }));
-    };
-    const handleTaskStatutChange = (e, taskIndex) => {
-        const { value } = e.target;
-        setModifiedData((prevData) => {
-            const updatedTodo = prevData.todo.map((task, index) =>
-                index === taskIndex ? { ...task, statut: parseInt(value, 10) } : task
-            );
-
-
-            return {
-                ...prevData,
-                todo: updatedTodo,
-            };
-        });
-    };
-
-
-    const handleTaskTitleChange = (e, taskIndex) => {
-        const { value } = e.target;
-        setModifiedData((prevData) => {
-            const updatedTodo = prevData.todo.map((task, index) =>
-                index === taskIndex ? { ...task, title: value } : task
-            );
-
-
-            return {
-                ...prevData,
-                todo: updatedTodo,
-            };
-        });
-    };
-
-    const handleTaskDescriptionChange = (e, taskIndex) => {
-        const { value } = e.target;
-        setModifiedData((prevData) => {
-            const updatedTodo = prevData.todo.map((task, index) =>
-                index === taskIndex ? { ...task, description: value } : task
-            );
-
-
-            return {
-                ...prevData,
-                todo: updatedTodo,
-            };
-        });
-    };
-
-
-
-
-
 
     return (
         <div>
-               
-            
-            {isEditing ? (
-                <div className="modify-input-primary">
-                    <strong>statut:</strong><br></br>{" "}
-                    <input
-                        type="number"
-                        name="statut"
-                        value={modifiedData.statut}
-                        min={0}
-                        max={2}
-                        onChange={(e) => handleListStatutChange(e, -1, "statut")}
-                    />
-                </div>
-            ) : null}
-
-           
+            <span
+                onClick={handleStatutClick}
+                style={{ cursor: isEditing ? "pointer" : "auto" }}
+            >
+                {isEditing
+                    ? `Statut: ${statutLabel(modifiedData.statut)} (Click to update the state)`
+                    : `Statut: ${statutLabel(modifiedData.statut)}`}
+            </span>
 
             <div>
                 <strong>Tasks:</strong>
                 {modifiedData.todo.map((task, index) => (
-                    <div className='modify-input-secondary' key={index}>
-                        <strong>{index + 1}</strong>{" "}<br></br>
-                        {isEditing ? (
-                            <>
-                              
-                                <strong>statut:</strong>{" "}<br></br>
-                                <input
-                                    type="number"
-                                    name={`statut_${index}`}
-                                    value={task.statut}
-                                    min={0}
-                                    max={2}
-                                    onChange={(e) => handleTaskStatutChange(e, index, "statut")}
-                                />
-
-                            </>
-
-                        ) : (
+                    <div key={index}>
+                        <strong>{index + 1}</strong>{" "}
+                        <span
+                            onClick={() => handleTaskStatutChange(index)}
+                            style={{ cursor: isEditing ? "pointer" : "auto" }}
+                        >
+                            {isEditing
+                                ? `Statut: ${statutLabel(task.statut)} (Click to update the state)`
+                                : `Statut: ${statutLabel(task.statut)}`}
+                        </span>
+                        {isEditing ? null : (
                             <span>
-                                <br></br> Titre : {task.title} <br></br> Description : {task.description}
+                                <br /> Titre : {task.title} <br /> Description : {task.description}
                             </span>
                         )}
                     </div>
                 ))}
             </div>
 
-            {isEditing ? (
-                <button onClick={handleModifyClick}>Save</button>
-            ) : (
-                <button onClick={handleToggleEdit}>Edit</button>
-            )}
+            {isEditing && <button onClick={handleModifyClick}>Save</button>}
+            <button onClick={handleToggleEdit}>
+                {isEditing ? "Cancel" : "Edit"}
+            </button>
         </div>
     );
+};
+
+const statutLabel = (statut) => {
+    if (statut === 0) {
+        return "Virgin";
+    } else if (statut === 1) {
+        return "In progress";
+    } else if (statut === 2) {
+        return "Done";
+    } else {
+        return "";
+    }
 };
 
 export default StatutEditing;

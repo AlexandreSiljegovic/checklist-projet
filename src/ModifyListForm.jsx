@@ -138,14 +138,14 @@ const handleTaskDescriptionChange = (e, taskIndex) => {
       
 
       <div className="modify-input-primary">
-        <strong>Description:</strong>{" "}
+        <strong>Description:</strong> <br></br>{" "}
         {isEditing ? (
           <input
             type="text"
             name="description"
             value={modifiedData.description}
             onChange={(e) => handleInputChange(e, -1, "description")}
-          />
+          /> 
         ) : (
           <span>{modifiedData.description}</span>
         )}
@@ -155,17 +155,17 @@ const handleTaskDescriptionChange = (e, taskIndex) => {
         <strong>Tasks:</strong>
         {modifiedData.todo.map((task, index) => (
           <div className='modify-input-secondary' key={index}>
-            <strong>{index + 1}</strong>{" "}<br></br>
+            <strong>{index + 1}</strong><br></br>{" "}
             {isEditing ? (
               <>
-                <strong>Title:</strong>{" "}<br></br>
+                <strong>Title:</strong><br></br>{" "}
                 <input
                   type="text"
                   name={`title_${index}`}
                   value={task.title}
                   onChange={(e) => handleTaskTitleChange(e, index, "title")}
-                />
-                <strong>Description:</strong>{" "}
+                /><br></br>
+                <strong>Description:</strong> <br></br>{" "}
                 <input
                   type="text"
                   name={`description_${index}`}

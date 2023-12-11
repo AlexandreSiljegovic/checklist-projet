@@ -7,6 +7,7 @@ const apiUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklists';
 const updateUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/update'
 const deleteUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/delete'
 const statutUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/statut'
+const checklistViewUrl = 'https://greenvelvet.alwaysdata.net/pfc/checklist/'
 const token = 'b679e83afaf347c039f6439266e514d3cc8deb28'
 
 export const fetchDataFromApi = async () => {
@@ -116,6 +117,22 @@ export const statutDataFromApi = async (id, statut) => {
     });
     console.log(responseStatut.data);
     
+    
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const checklistViewFromApi = async (id) => {
+  try {
+    
+    const responseChecklistView = await axios.get(`${checklistViewUrl}?id=${id}`, {
+      headers: {
+        'token': `b679e83afaf347c039f6439266e514d3cc8deb28`,
+      },
+    });
+    console.log(responseChecklistView.data);
+    return response.data;
     
   } catch (error) {
     console.error(error);

@@ -7,7 +7,7 @@ import {
 import ModifyListForm from "./ModifyListForm";
 import { format } from "date-fns";
 
-const ViewList = () => {
+const ViewModifyListForm = () => {
   const [lists, setLists] = useState([]);
   const [selectedList, setSelectedList] = useState(null);
   const [isModifying, setIsModifying] = useState(false);
@@ -121,4 +121,4 @@ const ViewList = () => {
   );
 };
 
-export default ViewList;
+export default ViewModifyListForm;

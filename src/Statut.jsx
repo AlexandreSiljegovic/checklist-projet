@@ -76,6 +76,20 @@ const Statut = () => {
         return <p>No lists available.</p>;
     }
 
+
+    const statutLabel = (statut) => { if  (statut === 0) {
+        return "Vierge";
+    } else if (statut === 1) {
+        return "En cours";
+    } else if (statut === 2) {
+        return "Terminé";
+    } else {
+        return "";
+    };
+    };
+
+
+
     return (
         <div className={`viewLists-container ${isModifying ? 'modifying' : ''}`}>
             {lists.map((response, index) => (
@@ -83,16 +97,16 @@ const Statut = () => {
                     <h6>{format(new Date(response.created_at), "MM/dd/yyyy")}</h6>
                     <h1>ID {response.id}</h1>
                     <h3>List {index + 1}</h3>
-                    <p>List title: {response.title}</p>
+                    <p><span className="underline">Title</span> : {response.title}</p>
                   
-                    <p>statut: {response.statut}</p>
+                    <p><span className="underline">Statut</span> : {statutLabel(response.statut)}</p>
                     <h3>Tasks</h3>
                     {Array.isArray(response.todo) && response.todo.length > 0 ? (
                         <ul className="ul-viewLists">
                             {response.todo.map((task, taskIndex) => (
                                 <li key={taskIndex}>
-                                  
-                                    <p>statut: {task.statut}</p>
+                                  <p><span className="underline">Task</span> : {task.title}</p>
+                                    <p><span className="underline">Statut</span> : {statutLabel(task.statut)}</p>
                                     <hr></hr>
                                 </li>
                             ))}
