@@ -186,9 +186,9 @@ const handleTaskDescriptionChange = (e, taskIndex) => {
       </div>
 
       {isEditing ? (
-        <button onClick={handleModifyClick}>Save</button>
+        <button className="modify-button" onClick={handleModifyClick}>Save</button>
       ) : (
-        <button onClick={handleToggleEdit}>Edit</button>
+        <button className="modify-button" onClick={handleToggleEdit}>Edit</button>
       )}
     </div>
   );
