@@ -16,9 +16,13 @@ const ViewList = () => {
   const handleModifyList = async (modifiedData) => {
     if (selectedList) {
       try {
+        const allTasksDone = modifiedData.todo.every((task) => task.statut === 1);
+
+        const listStatut = allTasksDone ? 2 : 1;
+
         const modifiedDataWithStatut = {
           ...modifiedData,
-          statut: modifiedData.statut,
+          statut: listStatut,
           todo: modifiedData.todo.map((task) => ({
             ...task,
             statut: task.statut || selectedList.statut,
@@ -48,6 +52,7 @@ const ViewList = () => {
       }
     }
   };
+
   const handleModifyClick = (list) => {
     setSelectedList((prevSelectedList) => (prevSelectedList ? null : list));
     setIsModifying(true);
@@ -83,18 +88,18 @@ const ViewList = () => {
     let statutClass = "";
     if (statut === 0) {
       statutClass = "statut-vierge";
-      return "Vierge";
+      return "Not done";
     } else if (statut === 1) {
       statutClass = "statut-encours";
-      return "En cours";
-    } else if (statut === 2) {
-     statutClass = "statut-termine";
-      return "Terminé";
-
-    } else {
+      return "Done";
+    }  else {
       return "";
     };
   };
+
+  
+
+
 
   const handleListDetailClick = async (listId) => {
     try {
@@ -119,21 +124,29 @@ const ViewList = () => {
          >
           <h6>{format(new Date(response.created_at), "MM/dd/yyyy")}</h6>
           <h1>ID {response.id}</h1>
-          <h3>List {index + 1}</h3>
+          <h3><span className="underline-h3">List</span> {index + 1}</h3>
+          {/* <h4> <span className="underline-h3">List statut</span> : {statutLabel(response.statut)}</h4> */}
           <p> <span className="underline">Title</span>  : {response.title}</p>
           <p> <span className="underline">Description</span> :  {response.description}</p>
-          <p className="{statutClass}" ><span className="underline">Statut</span> : {statutLabel(response.statut)}</p>
-          <h3>Tasks</h3>
+     
+          
+          <h3><span className="underline-h3">Total task</span> :  {response.todo.length}</h3>
+          <h4> <span className="underline-h3">Tasks Done</span> : {response.todo.filter(task => task.statut === 1).length}</h4>
+
+          
           {Array.isArray(response.todo) && response.todo.length > 0 ? (
             <ul className="ul-viewLists">
+
               {response.todo.map((task, taskIndex) => (
                 <li key={taskIndex}>
+                  
                   <hr></hr>
                   <p><span className="underline">Title</span> : {task.titleTask}</p>
                   <p><span className="underline">Description</span> :  {task.descriptionTask}</p>
                   <p><span className="underline">Statut</span> : {statutLabel(task.statut)} </p>
                   <hr></hr>
                 </li>
+               
               ))}
             </ul>
           ) : (
@@ -176,5 +189,7 @@ const ViewList = () => {
     </div>
   );
 };
+
+
 
 export default ViewList;

@@ -78,15 +78,24 @@ const Statut = () => {
 
 
     const statutLabel = (statut) => { if  (statut === 0) {
-        return "Vierge";
+        return "In progress";
     } else if (statut === 1) {
-        return "En cours";
+        return "In progress";
     } else if (statut === 2) {
-        return "Terminé";
+        return "Done";
     } else {
         return "";
     };
     };
+
+    const statutTaskLabel = (statut) => {
+        if (statut === 0) {
+            return "Not done";
+        } else if (statut === 1) {
+            return "Done";
+        } 
+    };
+
 
 
 
@@ -105,8 +114,8 @@ const Statut = () => {
                         <ul className="ul-viewLists">
                             {response.todo.map((task, taskIndex) => (
                                 <li key={taskIndex}>
-                                  <p><span className="underline">Task</span> : {task.title}</p>
-                                    <p><span className="underline">Statut</span> : {statutLabel(task.statut)}</p>
+                                  <p><span className="underline">Task</span> : {task.titleTask}</p>
+                                    <p><span className="underline">Statut</span> : {statutTaskLabel(task.statut)}</p>
                                     <hr></hr>
                                 </li>
                             ))}

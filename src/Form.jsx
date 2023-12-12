@@ -15,7 +15,7 @@ const Form = () => {
   };
 
   const handleAddInput = () => {
-    setAdditionalInputs([...additionalInputs, { title: "", description: "" }]);
+    setAdditionalInputs([...additionalInputs, { titleTask: "", descriptionTask: "" }]);
   };
 
   const handleAdditionalInputChange = (index, field, value) => {
@@ -106,20 +106,20 @@ const Form = () => {
                 <input
                   className="inputPrimary"
                   type="text"
-                  value={input.title}
+                  value={input.titleTask}
                   onChange={(e) =>
-                    handleAdditionalInputChange(index, "title", e.target.value)
+                    handleAdditionalInputChange(index, "titleTask", e.target.value)
                   }
                   placeholder="Titre de la tâche"
                 />
                 <input
                   className="inputSecondary"
                   type="text"
-                  value={input.description}
+                  value={input.descriptionTask}
                   onChange={(e) =>
                     handleAdditionalInputChange(
                       index,
-                      "description",
+                      "descriptionTask",
                       e.target.value
                     )
                   }

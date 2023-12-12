@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+
 const StatutEditing = ({ list, onModify }) => {
     const [isEditing, setIsEditing] = useState(false);
+   
+
 
     const [modifiedData, setModifiedData] = useState({
         id: null,
@@ -28,23 +31,31 @@ const StatutEditing = ({ list, onModify }) => {
     };
 
     const handleModifyClick = () => {
-        onModify(modifiedData);
+        // Update the overall list status based on task status
+        const listStatut = modifiedData.todo.every((task) => task.statut === 1) ? 2 : 1;
+       
+        onModify({
+            ...modifiedData,
+            statut: listStatut,
+        });
+        
+
         setIsEditing(false);
     };
 
-    const handleStatutClick = () => {
-        if (isEditing) {
-            const newStatut = (modifiedData.statut + 1) % 3;
-            setModifiedData((prevData) => ({
-                ...prevData,
-                statut: newStatut,
-            }));
-        }
-    };
+    // const handleStatutClick = () => {
+    //     if (isEditing) {
+    //         const newStatut = (modifiedData.statut + 1) % 3;
+    //         setModifiedData((prevData) => ({
+    //             ...prevData,
+    //             statut: newStatut,
+    //         }));
+    //     }
+    // };
 
     const handleTaskStatutChange = (taskIndex) => {
         if (isEditing) {
-            const newStatut = (modifiedData.todo[taskIndex].statut + 1) % 3;
+            const newStatut = (modifiedData.todo[taskIndex].statut + 1) % 2;
             setModifiedData((prevData) => {
                 const updatedTodo = prevData.todo.map((task, index) =>
                     index === taskIndex ? { ...task, statut: newStatut } : task
@@ -59,15 +70,6 @@ const StatutEditing = ({ list, onModify }) => {
 
     return (
         <div>
-            <span
-                onClick={handleStatutClick}
-                style={{ cursor: isEditing ? "pointer" : "auto" }}
-            >
-                {isEditing
-                    ? `Statut: ${statutLabel(modifiedData.statut)} (Click to update the state)`
-                    : `Statut: ${statutLabel(modifiedData.statut)}`}
-            </span>
-
             <div>
                 <strong>Tasks:</strong>
                 {modifiedData.todo.map((task, index) => (
@@ -78,8 +80,8 @@ const StatutEditing = ({ list, onModify }) => {
                             style={{ cursor: isEditing ? "pointer" : "auto" }}
                         >
                             {isEditing
-                                ? `Statut: ${statutLabel(task.statut)} (Click to update the state)`
-                                : `Statut: ${statutLabel(task.statut)}`}
+                                ? `Statut: ${statutTaskLabel(task.statut)} (Click to update the state)`
+                                : `Statut: ${statutTaskLabel(task.statut)}`}
                         </span>
                         {isEditing ? null : (
                             <span>
@@ -90,7 +92,11 @@ const StatutEditing = ({ list, onModify }) => {
                 ))}
             </div>
 
-            {isEditing && <button className="modify-button" onClick={handleModifyClick}>Save</button>}
+            {isEditing && (
+                <button className="modify-button" onClick={handleModifyClick}>
+                    Save
+                </button>
+            )}
             <button className="modify-button" onClick={handleToggleEdit}>
                 {isEditing ? "Cancel" : "Edit"}
             </button>
@@ -98,12 +104,10 @@ const StatutEditing = ({ list, onModify }) => {
     );
 };
 
-const statutLabel = (statut) => {
+const statutTaskLabel = (statut) => {
     if (statut === 0) {
-        return "Virgin";
+        return "Not done";
     } else if (statut === 1) {
-        return "In progress";
-    } else if (statut === 2) {
         return "Done";
     } else {
         return "";
