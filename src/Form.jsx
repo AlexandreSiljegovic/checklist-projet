@@ -2,6 +2,7 @@ import { postDataToApi } from "./Axios.jsx";
 import { useState } from "react";
 
 const Form = () => {
+  // les states pour le formulaire
   const [titleTask, setTitleTask] = useState("");
   const [descriptionTask, setDescriptionTask] = useState("");
   const [title, setTitle] = useState("");
@@ -74,14 +75,14 @@ const Form = () => {
                 type="text"
                 value={title}
                 onChange={handleChange(setTitle)}
-                placeholder="Ajouter un titre à la liste"
+                placeholder="Add a title to the list"
               />
               <input
                 className="inputSecondary"
                 type="text"
                 value={description}
                 onChange={handleChange(setDescription)}
-                placeholder="Ajouter une description à la liste"
+                placeholder="Add a description to the list"
               />
             </div>
             <div className="input-row">
@@ -90,14 +91,14 @@ const Form = () => {
                 type="text"
                 value={titleTask}
                 onChange={handleChange(setTitleTask)}
-                placeholder="Titre à la tâche"
+                placeholder="Add a title to the task"
               />
               <input
                 className="inputSecondary"
                 type="text"
                 value={descriptionTask}
                 onChange={handleChange(setDescriptionTask)}
-                placeholder="Description à la tâche"
+                placeholder="Add a description to the task"
               />
             </div>
 
@@ -110,7 +111,7 @@ const Form = () => {
                   onChange={(e) =>
                     handleAdditionalInputChange(index, "titleTask", e.target.value)
                   }
-                  placeholder="Titre de la tâche"
+                  placeholder="add a title to the task"
                 />
                 <input
                   className="inputSecondary"
@@ -123,7 +124,7 @@ const Form = () => {
                       e.target.value
                     )
                   }
-                  placeholder="Description de la tâche"
+                  placeholder="add a description to the task"
                 />
               </div>
             ))}
