@@ -11,8 +11,8 @@ return (
         <button id='nouveau'>
          <Link className='dashboard-link' to='/form'> CREATE A NEW LIST </Link>
          </button>
-       
            <ViewList /> 
+       
       
    </div>
             

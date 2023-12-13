@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     height: 50vh;
+   
     
 }
 
@@ -43,4 +44,9 @@ h1 {
 
 .action-delete  {
     color: $lightRed;
+}
+
+#nouveau {
+    width: 30vw;
+    height: 20vh;
 }
